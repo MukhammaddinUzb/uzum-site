@@ -226,7 +226,7 @@ function applyPayPromo(){
     saveOrders(os);closePay();paintPlanLine();toast("Promocode: "+(pr.days?pr.days+" kunlik":"Cheksiz")+" bepul faollashdi ✓");
     return;
   }
-  pendingPromo={code,percent:pr.percent||0};
+  pendingPromo={code,type:pr.type,percent:pr.percent||0};
   const base=PRICE_NUM[pendingPlan]||0,now=pendingPrice();
   document.getElementById("payPrice").innerHTML="<s style='color:#a7a3b8'>"+fmtPrice(base)+"</s> "+fmtPrice(now)+" som (-"+pendingPromo.percent+"%)";
   toast("Chegirma qo'llandi: -"+pendingPromo.percent+"% ✓");
