@@ -168,6 +168,11 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);d
 .acode{font-family:monospace;background:#14141d;border:1px dashed var(--pink);border-radius:8px;padding:4px 10px;font-weight:800;letter-spacing:.06em;cursor:pointer}
 .suscard{border:1px solid rgba(255,46,80,.4);background:rgba(255,46,80,.05);border-radius:14px;padding:12px 14px;margin-bottom:10px}
 .suscard.okb{border-color:rgba(61,220,132,.35);background:rgba(61,220,132,.05)}
+.promorow{display:flex;align-items:center;gap:12px;background:#14141d;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px;flex-wrap:wrap}
+.promorow .pdesc{color:var(--muted);font-size:13px;white-space:nowrap}
+.promorow .grow{flex:1}
+.promorow button{border:1px solid var(--line);background:#0b0b12;color:#fff;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.promorow button:hover{border-color:#ff5064;color:#ff8fa3}
 #adminView .card{max-width:1240px}
 #adminView .abtns{flex-wrap:nowrap}
 #adminView .abtns button{white-space:nowrap;padding:8px 11px;font-size:13px}
@@ -630,7 +635,7 @@ function renderPromos(){
   box.innerHTML=keys.map(code=>{const d=defs[code];
     const left=d.limit?((d.limit-(d.used||0))+'/'+d.limit+' qoldi'):'cheksiz';
     const kind=d.type==='discount'?('-'+(d.percent||0)+'% chegirma'):(d.name+' bepul');
-    return '<div class="row" style="align-items:center"><span class="acode" onclick="copyPromo(\''+code+'\')" title="Nusxalash">'+code+'</span><span style="color:var(--muted);font-size:13px">'+kind+' • '+left+'</span><span style="flex:1"></span><button class="abtns" style="border:1px solid var(--line);background:#0b0b12;color:#fff;border-radius:10px;padding:7px 10px;font-size:12px;font-weight:800;cursor:pointer" onclick="promoDelete(\''+code+'\')">O‘chirish</button></div>'}).join('')||'<p style="color:var(--muted);font-size:14px">Promokod yo‘q.</p>';
+    return '<div class="promorow"><span class="acode" onclick="copyPromo(\''+code+'\')" title="Nusxalash">'+code+'</span><span class="pdesc">'+kind+' • '+left+'</span><span class="grow"></span><button onclick="promoDelete(\''+code+'\')">O‘chirish</button></div>'}).join('')||'<p style="color:var(--muted);font-size:14px">Promokod yo‘q.</p>';
 }
 function copyPromo(code){try{navigator.clipboard.writeText(code);toast('Nusxalandi: '+code)}catch(e){toast(code)}}
 function promoCreate(){
