@@ -248,6 +248,10 @@ function paintPlanLine(){
  el.textContent=p.exp?('Faol obunang: '+p.name+' • '+planDaysLeft(p)+' kun qoldi — mod yuklash ochiq.'):'Faol obunang: '+p.name+' • Cheksiz ✓ — mod yuklash ochiq.';
 }
 paintHeader();paintPlanLine();
+// Nusxalashga qarshi yengil to'siq
+document.addEventListener('contextmenu',e=>{e.preventDefault();toast('Nusxalash cheklangan.')});
+document.addEventListener('keydown',e=>{const k=(e.key||'').toUpperCase();if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['I','J','C','K'].indexOf(k)>=0)||((e.ctrlKey||e.metaKey)&&['U','S'].indexOf(k)>=0)){e.preventDefault();toast('Bu amal cheklangan.')}});
+try{console.log('%cUZUM CLIENT%c Ruxsatsiz nusxalash taqiqlanadi.','font-size:20px;font-weight:bold;color:#a855f7','color:#fff')}catch(e){}
 try{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.mode,.card').forEach((elm,i)=>{elm.classList.add('rv');elm.setAttribute('data-d',String(i%3));io.observe(elm)});

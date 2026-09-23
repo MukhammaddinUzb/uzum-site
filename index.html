@@ -742,6 +742,10 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.mode,.card,.faq details,.pf-cards .pcard,.hero-left > *,h1,h2,.stats .stat').forEach((elm,i)=>{elm.classList.add('rv');elm.setAttribute('data-d',String(i%3));io.observe(elm)});
 }catch(e){}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeReceipt();closeAuth();closeProfile();if(typeof adminView!=='undefined'&&adminView.style.display==='block')showMain()}});
+// Nusxalashga qarshi yengil to'siq
+document.addEventListener('contextmenu',e=>{e.preventDefault();toast('Nusxalash cheklangan.')});
+document.addEventListener('keydown',e=>{const k=(e.key||'').toUpperCase();if(e.key==='F12'||((e.ctrlKey||e.metaKey)&&e.shiftKey&&['I','J','C','K'].indexOf(k)>=0)||((e.ctrlKey||e.metaKey)&&['U','S'].indexOf(k)>=0)){e.preventDefault();toast('Bu amal cheklangan.')}});
+try{console.log('%cUZUM CLIENT%c Ruxsatsiz nusxalash taqiqlanadi.','font-size:20px;font-weight:bold;color:#a855f7','color:#fff')}catch(e){}
 </script>
 </body>
 </html>
