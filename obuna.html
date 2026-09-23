@@ -110,12 +110,10 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);d
   </nav>
 </header>
 
-<style>.promobar{display:flex;align-items:center;gap:6px;background:#0d0d14;border:1px solid var(--line);border-radius:999px;padding:4px 4px 4px 12px;margin-top:14px;flex-wrap:wrap;max-width:430px}.promobar:focus-within{border-color:var(--pink);box-shadow:0 0 0 3px rgba(168,85,247,.18)}.promo-ico{font-size:13px}.promo-in{flex:1;min-width:70px;background:transparent;border:0;outline:none;color:#fff;font-size:12px;font-family:ui-monospace,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;font-weight:800}.promo-in::placeholder{color:#5b5666;letter-spacing:.02em;font-weight:600}.btn-sm{padding:6px 14px!important;font-size:12px!important}.promo-msg{font-size:11px;color:var(--muted);padding-right:6px}</style>
-<div class="promobar"><span class="promo-ico">🎟</span><input id="pagePromo" class="promo-in" placeholder="PROMOCODE"><button class="btn btn-pink btn-sm" onclick="applyPagePromo()">OK</button><button class="btn btn-ghost btn-sm" id="pagePromoClear" style="display:none" onclick="clearPagePromo()">✕</button><span id="pagePromoMsg" class="promo-msg"></span></div>
-<section class="mode-grid" style="margin-top:24px">
-  <article class="mode"><div class="mode-body"><span class="tag">30 KUN</span><h3 style="font-size:32px;margin-top:12px"><span id="pp0">30 000</span> <small style="font-size:15px;color:var(--muted)">so'm / 30 kun</small></h3><p>To'liq funksiya: PvP modlar, FPS Boost, config va yangilanishlar.</p><div style="margin-top:8px"><button class="btn btn-pink" onclick="buyPlan('30 kunlik')">Sotib olish →</button></div></div></article>
-  <article class="mode"><div class="mode-body"><span class="tag">90 KUN</span><h3 style="font-size:32px;margin-top:12px"><span id="pp1">80 000</span> <small style="font-size:15px;color:var(--muted)">so'm / 90 kun</small></h3><p>To'liq funksiya: PvP modlar, FPS Boost, config va yangilanishlar.</p><div style="margin-top:8px"><button class="btn btn-pink" onclick="buyPlan('90 kunlik')">Sotib olish →</button></div></div></article>
-  <article class="mode"><div class="mode-body"><span class="tag">CHEKSIZ</span><h3 style="font-size:32px;margin-top:12px"><span id="pp2">160 000</span> <small style="font-size:15px;color:var(--muted)">so'm / bir marta</small></h3><p>To'liq funksiya: PvP modlar, FPS Boost, config va yangilanishlar.</p><div style="margin-top:8px"><button class="btn btn-pink" onclick="buyPlan('Cheksiz')">Sotib olish →</button></div></div></article>
+<section class="mode-grid" style="margin-top:42px">
+  <article class="mode"><div class="mode-body"><span class="tag">30 KUN</span><h3 style="font-size:32px;margin-top:12px">30 000 <small style="font-size:15px;color:var(--muted)">so'm / 30 kun</small></h3><p>To'liq funksiya: PvP modlar, FPS Boost, config va yangilanishlar.</p><div style="margin-top:8px"><button class="btn btn-pink" onclick="buyPlan('30 kunlik')">Sotib olish →</button></div></div></article>
+  <article class="mode"><div class="mode-body"><span class="tag">90 KUN</span><h3 style="font-size:32px;margin-top:12px">80 000 <small style="font-size:15px;color:var(--muted)">so'm / 90 kun</small></h3><p>To'liq funksiya: PvP modlar, FPS Boost, config va yangilanishlar.</p><div style="margin-top:8px"><button class="btn btn-pink" onclick="buyPlan('90 kunlik')">Sotib olish →</button></div></div></article>
+  <article class="mode"><div class="mode-body"><span class="tag">CHEKSIZ</span><h3 style="font-size:32px;margin-top:12px">160 000 <small style="font-size:15px;color:var(--muted)">so'm / bir marta</small></h3><p>To'liq funksiya: PvP modlar, FPS Boost, config va yangilanishlar.</p><div style="margin-top:8px"><button class="btn btn-pink" onclick="buyPlan('Cheksiz')">Sotib olish →</button></div></div></article>
 </section>
 
 <footer><div style="display:flex;align-items:center;gap:10px"><img src="art/brand/uzumclient-logo.png" width="23" alt=""><b>UZUM CLIENT</b> © 2026</div><div style="display:flex;gap:14px"><a href="index.html">Bosh sahifa</a><a href="index.html#top">Yuqoriga ↑</a></div></footer>
@@ -176,8 +174,7 @@ function buyPlan(name){
   document.getElementById("payPlanName").textContent=name;
   document.getElementById("payPrice").textContent=PRICES[name]+" som";
   document.getElementById("payPromo").value="";
-  if(pagePromo){pendingPromo={code:pagePromo.code,type:"discount",percent:pagePromo.percent};document.getElementById("payPromo").value=pagePromo.code;const base=PRICE_NUM[name]||0,now=Math.round(base*(100-pagePromo.percent)/100);document.getElementById("payPrice").innerHTML="<s style='color:#a7a3b8'>"+fmtPrice(base)+"</s> <span style='color:#3ddc84'>"+fmtPrice(now)+"</span> som (-"+pagePromo.percent+"%)"}
- document.getElementById("payStep1").style.display="block";
+  document.getElementById("payStep1").style.display="block";
  document.getElementById("payStep2").style.display="none";
  const pv=document.getElementById("payPreview");pv.src="";pv.style.display="none";
  document.getElementById("payModal").classList.add("show");
@@ -211,31 +208,6 @@ function getPromos(){try{return JSON.parse(localStorage.getItem("uzumclient_prom
 const PRICE_NUM={"30 kunlik":30000,"90 kunlik":80000,"Cheksiz":160000};
 function fmtPrice(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g," ")}
 let pendingPromo=null;
-function applyPagePromo(){
-  const s=localStorage.getItem("uzumclient_session");if(!s){toast("Avval Register / Kirish qil!");return}
-  const code=document.getElementById("pagePromo").value.trim().toUpperCase();
-  const defs=getPromoDefs(),pr=defs[code];
-  const msg=document.getElementById("pagePromoMsg");
-  if(!pr||pr.type!=="discount"){msg.textContent="Chegirmali kod topilmadi.";msg.style.color="#ff8fa3";return}
-  if(pr.limit&&(pr.used||0)>=pr.limit){msg.textContent="Bu promocode limiti tugagan.";msg.style.color="#ff8fa3";return}
-  const used=(getPromos()[s.toLowerCase()]||[]);
-  if(used.includes(code)){msg.textContent="Bu promocode ishlatilgan.";msg.style.color="#ff8fa3";return}
-  pagePromo={code,percent:pr.percent||0};
-  msg.innerHTML="Qo'llandi: <b style='color:#3ddc84'>-"+pagePromo.percent+"%</b> — narxlar yangilandi ✓";
-  msg.style.color="";
-  document.getElementById("pagePromoClear").style.display="";
-  repaintPrices();toast("Chegirma: -"+pagePromo.percent+"% ✓");
-}
-function clearPagePromo(){pagePromo=null;document.getElementById("pagePromo").value="";const m=document.getElementById("pagePromoMsg");m.textContent="";document.getElementById("pagePromoClear").style.display="none";repaintPrices()}
-function repaintPrices(){
-  const plans=["30 kunlik","90 kunlik","Cheksiz"];
-  plans.forEach(function(name,i){
-    const el=document.getElementById("pp"+i);if(!el)return;
-    const base=PRICE_NUM[name]||0;
-    if(pagePromo){const now=Math.round(base*(100-pagePromo.percent)/100);el.innerHTML="<s style='color:#a7a3b8'>"+fmtPrice(base)+"</s> <span style='color:#3ddc84'>"+fmtPrice(now)+"</span>"}
-    else{el.textContent=fmtPrice(base)}
-  });
-}
 function pendingPrice(){const base=PRICE_NUM[pendingPlan]||0;if(pendingPromo&&pendingPromo.type==="discount")return Math.round(base*(100-(pendingPromo.percent||0))/100);return base}
 function applyPayPromo(){
   const s=localStorage.getItem("uzumclient_session");if(!s)return;
