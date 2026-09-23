@@ -228,7 +228,7 @@ function applyPayPromo(){
   }
   pendingPromo={code,type:pr.type,percent:pr.percent||0};
   const base=PRICE_NUM[pendingPlan]||0,now=pendingPrice();
-  document.getElementById("payPrice").innerHTML="<s style='color:#a7a3b8'>"+fmtPrice(base)+"</s> "+fmtPrice(now)+" som (-"+pendingPromo.percent+"%)";
+  document.getElementById("payPrice").innerHTML="<s style='color:#a7a3b8'>"+fmtPrice(base)+"</s> <span style='color:#3ddc84'>"+fmtPrice(now)+"</span> som (-"+pendingPromo.percent+"%)";
   toast("Chegirma qo'llandi: -"+pendingPromo.percent+"% ✓");
 }
 function logout(){localStorage.removeItem('uzumclient_session');location.reload()}
