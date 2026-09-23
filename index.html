@@ -476,7 +476,7 @@ async function doLogin(){
     const key=ensureDemoRow((r.user&&r.user.user_metadata&&r.user.user_metadata.username)||mail.split('@')[0],mail);
     localStorage.setItem('uzumclient_session',getUsers()[key].nick);
     try{await sbRefresh()}catch(e){}
-    closeAuth();toast('Xush kelibsan, '+getUsers()[key].nick+'!');paintUser();
+    closeAuth();toast('Kirding: '+mail);paintUser();
   }catch(e){showErr(friendlyAuthErr(e.message))}
 }
 function logout(){const s=sbGet();if(s&&s.access_token){supa("/auth/v1/logout",{method:"POST",headers:{"Content-Type":"application/json"}},s.access_token).catch(function(){})}sbSet(null);profSet(null);localStorage.removeItem('uzumclient_session');closeProfile();paintUser();toast('Chiqdingiz.')}
