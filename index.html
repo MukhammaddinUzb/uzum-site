@@ -633,7 +633,7 @@ function renderPromos(){
   const defs=getPromoDefs(),box=document.getElementById('promoList');
   const keys=Object.keys(defs).sort();
   box.innerHTML=keys.map(code=>{const d=defs[code];
-    const left=d.limit?((d.limit-(d.used||0))+'/'+d.limit+' qoldi'):'cheksiz';
+    const left=d.limit?((d.used||0)+'/'+d.limit):'cheksiz';
     const kind=d.type==='discount'?('-'+(d.percent||0)+'% chegirma'):(d.name+' bepul');
     return '<div class="promorow"><span class="acode" onclick="copyPromo(\''+code+'\')" title="Nusxalash">'+code+'</span><span class="pdesc">'+kind+' • '+left+'</span><span class="grow"></span><button onclick="promoDelete(\''+code+'\')">O‘chirish</button></div>'}).join('')||'<p style="color:var(--muted);font-size:14px">Promokod yo‘q.</p>';
 }
